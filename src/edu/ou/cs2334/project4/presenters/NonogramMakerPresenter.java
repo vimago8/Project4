@@ -21,11 +21,16 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	private int cellLength;
 	
 	public NonogramMakerPresenter(int numRows, int numCols, int cellLength) {
+		view = new NonogramMakerView(numRows, numCols, cellLength);
+		model = new NonogramMakerModel(numRows, numCols);
 		
+		this.numRows = numRows;
+		this.numCols = numCols;
+		this.cellLength = cellLength;
 	}
 	
 	private Window getWindow() {
-		
+		return view.getPane();
 	}
 	
 	private void init() {
