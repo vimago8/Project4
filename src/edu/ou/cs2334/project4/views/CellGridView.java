@@ -2,10 +2,12 @@ package edu.ou.cs2334.project4.views;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 
 public class CellGridView {
 	private ArrayList<ToggleButton> gridButtons;
@@ -21,12 +23,24 @@ public class CellGridView {
 		gridButtons = new ArrayList<ToggleButton>();
 		
 		gridPane.setAlignment(Pos.CENTER);
+
+	 
 		
 		initButtons(numRows, numCols, cellLength);
 		
 		
+		//adding buttons to the gridpane
+		for(int i = 0; i < this.numRows; ++i) {
+			for(int k = 0; k < this.numCols; ++k) {
+				gridPane.add(getToggleButton(i, k), k, i);
+			}
+		}
 		
 	}
+	
+//	public static void main (String[] args) {
+//		CellGridView cellgrid = new CellGridView(4, 4, 1);
+//	}
 	
 	public void initButtons(int numRows, int numCols, int cellLength) {
 		this.numRows = numRows;
@@ -34,13 +48,18 @@ public class CellGridView {
 		
 		gridButtons.clear();
 		gridPane.getChildren().clear();
+
+		
 		
 		for(int i = 0; i < (numRows * numCols); ++i) {
 			ToggleButton temp = new ToggleButton();
 			temp.minWidth(cellLength);
-			temp.maxWidth(cellLength);
-			temp.minHeight(cellLength);
-			temp.maxHeight(cellLength);
+			
+			temp.setMaxWidth(cellLength);
+			temp.setPrefWidth(cellLength);
+			temp.setMinHeight(cellLength);
+			temp.setMaxHeight(cellLength);
+			temp.setPrefHeight(cellLength);
 			gridButtons.add(temp);
 		}
 	}

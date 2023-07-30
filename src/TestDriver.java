@@ -45,6 +45,7 @@ public class TestDriver extends Application {
 		button = testCell.getToggleButton(1, 1);
 		System.out.println(button);
 		
+		
 		try {
 			button = testCell.getToggleButton(2, 2);
 			System.out.println(button);
@@ -65,13 +66,14 @@ public class TestDriver extends Application {
 			e.printStackTrace();
 		}
 		
+			
 		
 	}
 
 	@Override
 	public void start(Stage applicationStage) throws Exception {
 		// TODO Auto-generated method stub
-		CellGridView cellGrid = new CellGridView(3, 3, 1);
+		CellGridView cellGrid = new CellGridView(4, 4, 50);
 		Pane pane = cellGrid.getPane();
 		Scene scene = new Scene(pane);
 		
