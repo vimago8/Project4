@@ -2,18 +2,34 @@ package edu.ou.cs2334.project4.views;
 
 import java.util.ArrayList;
 
-import javafx.beans.property.DoubleProperty;
+
+
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+
+/**
+ * 
+ * This class creates a GridPane of ToggleButtons to be connected with NonogramMakerModel in NonogramMakerPresenter.
+ * Field includes an ArrayList of ToggleButtons that are added to the GridPane
+ * @author Grace Lee
+ * @version 1.0
+ *
+ */
 
 public class CellGridView {
 	private ArrayList<ToggleButton> gridButtons;
 	private GridPane gridPane;
 	private int numRows;
 	private int numCols;
+	
+	/**
+	 * Constructor for a cell grid. Initializes the GridPane and ArrayList, and sets GridPane alignment
+	 * @param numRows
+	 * @param numCols
+	 * @param cellLength
+	 */
 	
 	public CellGridView(int numRows, int numCols, int cellLength) {
 		this.numRows = numRows;
@@ -38,9 +54,12 @@ public class CellGridView {
 		
 	}
 	
-//	public static void main (String[] args) {
-//		CellGridView cellgrid = new CellGridView(4, 4, 1);
-//	}
+	/**
+	 * Initializes buttons corresponding to numRows * numCols. Adds them to the ArrayList.
+	 * @param numRows
+	 * @param numCols
+	 * @param cellLength
+	 */
 	
 	public void initButtons(int numRows, int numCols, int cellLength) {
 		this.numRows = numRows;
@@ -64,10 +83,18 @@ public class CellGridView {
 		}
 	}
 	
+	/**
+	 * Returns numRows
+	 * @return number of rows
+	 */
 	public int getNumRows() {
 		return numRows;
 	}
 	
+	/**
+	 * Returns numCols
+	 * @return number of columns
+	 */
 	public int getNumCols() {
 		return numCols;
 	}
@@ -78,16 +105,25 @@ public class CellGridView {
 		return gridButtons;
 	}
 	
+	/**
+	 * Returns a ToggleButton
+	 * @param row
+	 * @param col
+	 * @return a ToggleButton at the specified indices
+	 */
 	public ToggleButton getToggleButton(int row, int col) {
 		//row and col are indices
 		++row; //non index
 		++col; //non index
-		//int pos = (numCols * (row + 1)) - (numCols - (col + 1)); //index of gridButtons
 		int pos2 = (numCols * row) - (numCols - col);
 		--pos2;
 		return gridButtons.get(pos2);
 	}
 	
+	/**
+	 * Returns gridPane
+	 * @return the GridPane
+	 */
 	public Pane getPane() {
 		return gridPane;
 	}

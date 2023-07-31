@@ -6,7 +6,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+/**
+ * Where the stage is set and everything runs
+ * @author Grace Lee
+ * @version 1.0
+ */
 public class Main extends Application {
 	private static final int IDX_NUM_ROWS = 0;
 	private static final int IDX_NUM_COLS = 1;

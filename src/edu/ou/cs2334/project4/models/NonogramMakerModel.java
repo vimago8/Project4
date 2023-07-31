@@ -227,7 +227,8 @@ public class NonogramMakerModel {
 		
 	}
 	/**
-	 * Creates a string representation of a puzzle file using fields
+	 * Creates a string representation of a puzzle file using fields.
+	 * 
 	 */
 	public String toString() {
 		

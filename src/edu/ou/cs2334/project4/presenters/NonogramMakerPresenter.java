@@ -2,6 +2,8 @@ package edu.ou.cs2334.project4.presenters;
 
 import javafx.stage.Window;
 import java.io.File;
+import java.io.IOException;
+
 import edu.ou.cs2334.project4.interfaces.Openable;
 import edu.ou.cs2334.project4.interfaces.Saveable;
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
@@ -106,9 +108,11 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	}
 	
 	/**
-	 * 
+	 * Calls model.saveToFile with the given filename. 
+	 * @param filename
+	 * @throws IOException 
 	 */
-	public void save (String filename) {
-		
+	public void save (String filename) throws IOException {
+		model.saveToFile(filename);
 	}
 }
