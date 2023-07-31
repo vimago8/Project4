@@ -30,6 +30,7 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	}
 	
 	private Window getWindow() {
+		if()
 		return view.getPane();
 	}
 	

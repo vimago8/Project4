@@ -9,5 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX20"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFXLibrary20"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
