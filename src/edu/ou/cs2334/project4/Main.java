@@ -1,7 +1,9 @@
 package edu.ou.cs2334.project4;
 
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
+import edu.ou.cs2334.project4.presenters.NonogramMakerPresenter;
 import edu.ou.cs2334.project4.views.CellGridView;
+import edu.ou.cs2334.project4.views.NonogramMakerView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -17,7 +19,7 @@ public class Main extends Application {
 	private static final int IDX_CELL_SIZE = 2;
 	
 	public static void main(String[] args) {
-		NonogramMakerModel model = new NonogramMakerModel(2, 2);
+		//NonogramMakerModel model = new NonogramMakerModel(2, 2);
 		try {
 			launch(args);
 		} catch (Exception e) {
@@ -28,11 +30,17 @@ public class Main extends Application {
 	public void start(Stage applicationStage) throws Exception {
 		// TODO Auto-generated method stub
 		CellGridView cellGrid = new CellGridView(4, 4, 50);
-		Pane pane = cellGrid.getPane();
+		NonogramMakerView nonoView= new NonogramMakerView(4, 4, 50);
+		Pane pane = nonoView.getPane();
 		Scene scene = new Scene(pane);
 		
+		NonogramMakerPresenter presenter = new NonogramMakerPresenter(4,4,50);
+		
+		scene = new Scene(presenter.getPane());
+		
+		
 		applicationStage.setScene(scene);
-		applicationStage.setTitle("CellGridView test");
+		applicationStage.setTitle("Nonogram Maker");
 		applicationStage.show();
 		
 	}

@@ -1,7 +1,8 @@
 package edu.ou.cs2334.project4.handlers;
 
-import java.awt.Window;
+import javafx.stage.Window;
 
+import javafx.event.Event;
 import javafx.stage.FileChooser;
 /**
  * An interface for file selection
@@ -14,6 +15,7 @@ public abstract class AbstractBaseHandler {
 	protected FileChooser fileChooser;
 	
 	protected AbstractBaseHandler(Window window, FileChooser fileChooser) {
-		
+		this.window = window;
+		this.fileChooser = fileChooser;
 	}
 }

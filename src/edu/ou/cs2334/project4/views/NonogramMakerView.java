@@ -27,9 +27,9 @@ public class NonogramMakerView {
 	private CellGridView cellGridView;
 	private HashMap<String, MenuItem> menuItemsMap;
 	
-	public final String MENU_ITEM_OPEN = "MENU_ITEM_OPEN";
-	public final String MENU_ITEM_SAVE = "MENU_ITEM_SAVE";
-	public final String MENU_ITEM_EXIT = "MENU_ITEM_EXIT";
+	public final static String MENU_ITEM_OPEN = "MENU_ITEM_OPEN";
+	public final static String MENU_ITEM_SAVE = "MENU_ITEM_SAVE";
+	public final static String MENU_ITEM_EXIT = "MENU_ITEM_EXIT";
 	
 	/**
 	 * Initializes borderPane, menuBar, and cellGridView. Sets alignment for borderPane.
@@ -40,6 +40,7 @@ public class NonogramMakerView {
 	public NonogramMakerView (int numRows, int numCols, int cellLength) {
 		borderPane = new BorderPane();
 		cellGridView = new CellGridView(numRows, numCols, cellLength);
+		menuBar = new MenuBar();
 		//initialize menu bar
 		initMenuBar();
 		borderPane.setCenter(cellGridView.getPane());
@@ -57,6 +58,7 @@ public class NonogramMakerView {
 		MenuItem exit = new MenuItem("_Exit");
 		
 		fileMenu.getItems().addAll(open, save, exit);
+		menuBar.getMenus().add(fileMenu);
 		
 		menuItemsMap = new HashMap<String, MenuItem>();
 		menuItemsMap.put(MENU_ITEM_OPEN, open);
@@ -69,7 +71,9 @@ public class NonogramMakerView {
 			}
 		});
 		
-		menuBar.getMenus().add(fileMenu);
+		
+		
+		//menuBar.getMenus().add(fileMenu);
 	}
 	
 	/**

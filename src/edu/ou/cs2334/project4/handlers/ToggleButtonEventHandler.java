@@ -1,8 +1,9 @@
 package edu.ou.cs2334.project4.handlers;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
+import edu.ou.cs2334.project4.presenters.NonogramMakerPresenter;
 /**
  * Implements an EventHandler for ToggleButtons in CellGridView
  * @author Grace Lee
@@ -10,7 +11,7 @@ import edu.ou.cs2334.project4.models.NonogramMakerModel;
  *
  */
 public class ToggleButtonEventHandler {
-	private NonogramMakerModel model;
+	private NonogramMakerPresenter presenter;
 	private int rowIdx;
 	private int colIdx;
 	
@@ -21,16 +22,18 @@ public class ToggleButtonEventHandler {
 	 * @param rowIdx
 	 * @param colIdx
 	 */
-	public ToggleButtonEventHandler(NonogramMakerModel model, int rowIdx, int colIdx) {
-		this.model = model;
+	public ToggleButtonEventHandler(NonogramMakerPresenter presenter, int rowIdx, int colIdx) {
+		this.presenter = presenter;
 		this.rowIdx = rowIdx;
 		this.colIdx = colIdx;
 		
+		
+		ToggleButton button = presenter.
 		
 		
 	}
 	
 	public void handle(ActionEvent event) {
-		
+		if(event.getClass)
 	}
 }

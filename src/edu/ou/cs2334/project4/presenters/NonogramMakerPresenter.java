@@ -1,13 +1,23 @@
 package edu.ou.cs2334.project4.presenters;
 
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Window;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import edu.ou.cs2334.project4.handlers.OpenHandler;
+import edu.ou.cs2334.project4.handlers.SaveHandler;
+import edu.ou.cs2334.project4.handlers.ToggleButtonEventHandler;
 import edu.ou.cs2334.project4.interfaces.Openable;
 import edu.ou.cs2334.project4.interfaces.Saveable;
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
 import edu.ou.cs2334.project4.views.NonogramMakerView;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
 
@@ -40,6 +50,8 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 		this.numRows = numRows;
 		this.numCols = numCols;
 		this.cellLength = cellLength;
+		
+		init();
 	}
 	/**
 	 * Returns window of view
@@ -53,7 +65,9 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	 * Initializes the togglebuttons and connects them with the model.
 	 */
 	private void init() {
-		
+		initToggleButtons();
+		//bindToggleButtons();
+		configureMenuItems();
 	}
 	
 	/**
@@ -61,6 +75,7 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	 * call .sizeToScene() so the window so the window is not too big/small
 	 */
 	private void initToggleButtons() {
+		view.initButtons(numRows, numCols, cellLength);
 		if(getWindow() != null) {
 			getWindow().sizeToScene();
 		}
@@ -80,8 +95,12 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 				} else {
 					togBut.setSelected(false);
 				}
+				
+				togBut.addEventHandler(new ToggleButtonEventHandler(model, i , k), null);
 			}
 		}
+		
+		
 		
 	}
 	
@@ -89,6 +108,30 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	 * Sets event handlers for the open and save buttons.
 	 */
 	private void configureMenuItems() {
+		MenuItem open = view.getMenuItem("MENU_ITEM_OPEN");
+		MenuItem save = view.getMenuItem("MENU_ITEM_SAVE");
+		Openable var = this;
+		Saveable var2 = this;
+		
+		open.setOnAction( new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				FileChooser filechooser = new FileChooser();
+				filechooser.setTitle("Open");
+				filechooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
+				filechooser.setInitialDirectory(new File("."));
+				view.getMenuItem(NonogramMakerView.MENU_ITEM_OPEN).setOnAction(new OpenHandler(getWindow(), filechooser, var));
+			}
+		});
+		
+		save.setOnAction( new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				FileChooser filechooser = new FileChooser();
+				filechooser.setTitle("Save");
+				filechooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
+				filechooser.setInitialDirectory(new File("."));
+				view.getMenuItem(NonogramMakerView.MENU_ITEM_SAVE).setOnAction(new SaveHandler(getWindow(), filechooser, var2));
+			}
+		});
 		
 	}
 	
@@ -102,9 +145,12 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	
 	/**
 	 * Calls the NonogramMakerModel constructor with the file parameter, and initializes togglebuttons
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public void open (File file) {
-		
+	public void open (File file) throws FileNotFoundException, IOException {
+		model = new NonogramMakerModel(file);
+		init();
 	}
 	
 	/**

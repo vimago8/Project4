@@ -46,7 +46,7 @@ public class NonogramMakerModel {
 	
 /**
  * Reads a file, stores relevant information to fields
- * @param file
+ * @param file a file containing the puzzle
  * @throws FileNotFoundException
  * @throws IOException
  */
@@ -89,7 +89,7 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Creates a file using string parameter, then reads in relevant information
-	 * @param filename
+	 * @param filename the name of the puzzle file
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
@@ -107,8 +107,8 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Returns cell corresponding to the row and column index provided
-	 * @param rowIdx
-	 * @param colIdx
+	 * @param rowIdx row index
+	 * @param colIdx row index
 	 * @return
 	 */
 	public boolean getCell(int rowIdx, int colIdx) {
@@ -120,9 +120,9 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Sets the cell corresponding to the given row and column value with the given state
-	 * @param rowIdx
-	 * @param colIdx
-	 * @param state
+	 * @param rowIdx row index
+	 * @param colIdx row index
+	 * @param state state of cell to be set
 	 */
 	public void setCell(int rowIdx, int colIdx, boolean state) {
 		++rowIdx;
@@ -181,7 +181,7 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Given a row index, stores the nonogram numbers corresponding to that row's states in a list
-	 * @param rowIdx, row index
+	 * @param rowIdx row index
 	 * @return List of integers
 	 */
 	public List<Integer> projectRow (int rowIdx) {
@@ -197,7 +197,7 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Given a col index, stores the nonogram numbers corresponding to that column's states in a list
-	 * @param colIdx
+	 * @param colIdx column index
 	 * @return List of Integers
 	 */
 	public List<Integer> projectCol (int colIdx) {
@@ -211,7 +211,7 @@ public class NonogramMakerModel {
 	}
 	/**
 	 * Writes a string containing a puzzle to a file. Creates a new file if it doesn't exist yet.
-	 * @param filename
+	 * @param filename name of file to be saved to
 	 * @throws IOException
 	 */
 	public void saveToFile(String filename) throws IOException {
