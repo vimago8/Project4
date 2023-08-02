@@ -11,6 +11,9 @@ import java.util.HashMap;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -26,6 +29,7 @@ public class NonogramMakerView {
 	private MenuBar menuBar;
 	private CellGridView cellGridView;
 	private HashMap<String, MenuItem> menuItemsMap;
+
 	
 	public final static String MENU_ITEM_OPEN = "MENU_ITEM_OPEN";
 	public final static String MENU_ITEM_SAVE = "MENU_ITEM_SAVE";
@@ -33,18 +37,24 @@ public class NonogramMakerView {
 	
 	/**
 	 * Initializes borderPane, menuBar, and cellGridView. Sets alignment for borderPane.
-	 * @param numRows
-	 * @param numCols
-	 * @param cellLength
+	 * @param numRows number of rows
+	 * @param numCols number of columns
+	 * @param cellLength length of cells
 	 */
 	public NonogramMakerView (int numRows, int numCols, int cellLength) {
+		
+		
 		borderPane = new BorderPane();
+		
+		
+		
+		
 		cellGridView = new CellGridView(numRows, numCols, cellLength);
 		menuBar = new MenuBar();
-		//initialize menu bar
+		
 		initMenuBar();
 		borderPane.setCenter(cellGridView.getPane());
-		//set top with menu bar
+		
 		borderPane.setTop(menuBar);
 	}
 	
@@ -71,14 +81,11 @@ public class NonogramMakerView {
 			}
 		});
 		
-		
-		
-		//menuBar.getMenus().add(fileMenu);
 	}
 	
 	/**
 	 * Returns MenuItem
-	 * @param name
+	 * @param name name of the menu item to get
 	 * @return a menuItem from the menuItemsMap with given name
 	 */
 	public MenuItem getMenuItem(String name) {
@@ -96,9 +103,9 @@ public class NonogramMakerView {
 	
 	/**
 	 * Initializes buttons by calling the initButtons method in cellGridView
-	 * @param numRows
-	 * @param numCols
-	 * @param cellLength
+	 * @param numRows number of rows
+	 * @param numCols number of columns
+	 * @param cellLength length of cells
 	 */
 	public void initButtons(int numRows, int numCols, int cellLength) {
 		cellGridView.initButtons(numRows, numCols, cellLength);
@@ -129,5 +136,6 @@ public class NonogramMakerView {
 	public int getNumCols() {
 		return cellGridView.getNumCols();
 	}
+	
 	
 }

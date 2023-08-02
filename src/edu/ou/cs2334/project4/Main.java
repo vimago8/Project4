@@ -1,5 +1,7 @@
 package edu.ou.cs2334.project4;
 
+import java.util.List;
+
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
 import edu.ou.cs2334.project4.presenters.NonogramMakerPresenter;
 import edu.ou.cs2334.project4.views.CellGridView;
@@ -19,29 +21,33 @@ public class Main extends Application {
 	private static final int IDX_CELL_SIZE = 2;
 	
 	public static void main(String[] args) {
-		//NonogramMakerModel model = new NonogramMakerModel(2, 2);
 		try {
 			launch(args);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	@Override
+	@Override	
 	public void start(Stage applicationStage) throws Exception {
 		// TODO Auto-generated method stub
-		CellGridView cellGrid = new CellGridView(4, 4, 50);
-		NonogramMakerView nonoView= new NonogramMakerView(4, 4, 50);
-		Pane pane = nonoView.getPane();
-		Scene scene = new Scene(pane);
 		
-		NonogramMakerPresenter presenter = new NonogramMakerPresenter(4,4,50);
-		
-		scene = new Scene(presenter.getPane());
+		List<String> string = getParameters().getUnnamed();
+		int numRows = Integer.parseInt(string.get(0));
+		int numCols = Integer.parseInt(string.get(1));
+		int cellLength = Integer.parseInt(string.get(2));
 		
 		
-		applicationStage.setScene(scene);
+		NonogramMakerPresenter nonoPres = new NonogramMakerPresenter(numRows, numCols, cellLength);
+		Scene nonoScene = new Scene(nonoPres.getPane());
+		
+		nonoScene.getStylesheets().add("style.css");
+		
+		applicationStage.setScene(nonoScene);
 		applicationStage.setTitle("Nonogram Maker");
+		applicationStage.setResizable(false);
 		applicationStage.show();
+				
+
 		
 	}
 }

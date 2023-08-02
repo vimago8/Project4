@@ -35,8 +35,12 @@ public class SaveHandler extends AbstractBaseHandler implements EventHandler<Act
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub
 		File file = fileChooser.showSaveDialog(window);
-		String filename = file.getName();
+		
 		if(file != null) {
+			String filename = file.getName();
+			if(!filename.endsWith(".txt")) {
+				filename+= ".txt";
+			}
 			try {
 				saver.save(filename);
 			} catch (IOException e) {

@@ -32,7 +32,7 @@ public class OpenHandler extends AbstractBaseHandler implements EventHandler<Act
 	 * Handles opening a file given a window. Enables user to open a file from the filesystem.
 	 * @param window window from which the file is opened
 	 * @param fileChooser object that gives access to the file system
-	 * @param opener 
+	 * @param opener an object that implements Openable
 	 */
 	public OpenHandler(Window window, FileChooser fileChooser, Openable opener) {
 		super(window, fileChooser);

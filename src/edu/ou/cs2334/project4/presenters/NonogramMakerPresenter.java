@@ -6,6 +6,7 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 
 import edu.ou.cs2334.project4.handlers.OpenHandler;
 import edu.ou.cs2334.project4.handlers.SaveHandler;
@@ -14,11 +15,13 @@ import edu.ou.cs2334.project4.interfaces.Openable;
 import edu.ou.cs2334.project4.interfaces.Saveable;
 import edu.ou.cs2334.project4.models.NonogramMakerModel;
 import edu.ou.cs2334.project4.views.NonogramMakerView;
-import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
+
 import javafx.scene.layout.Pane;
 
 /**
@@ -37,11 +40,12 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	private int numCols;
 	private int cellLength;
 	
+	
 	/**
 	 * Constructs a view and a model, and reads in their dimensions
-	 * @param numRows
-	 * @param numCols
-	 * @param cellLength
+	 * @param numRows row number
+	 * @param numCols column number
+	 * @param cellLength length of each cell
 	 */
 	public NonogramMakerPresenter(int numRows, int numCols, int cellLength) {
 		view = new NonogramMakerView(numRows, numCols, cellLength);
@@ -58,15 +62,23 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	 * @return the Window of the Scene of the Pane of NonogramMakerView
 	 */
 	private Window getWindow() {
-		return view.getPane().getScene().getWindow();
-	}
+		try {
+			return view.getPane().getScene().getWindow();
+			
+		} catch (NullPointerException e) {
+			
+			return null;
+		}
+		
+		
+ }
 	
 	/**
 	 * Initializes the togglebuttons and connects them with the model.
 	 */
 	private void init() {
 		initToggleButtons();
-		//bindToggleButtons();
+		bindToggleButtons();
 		configureMenuItems();
 	}
 	
@@ -96,7 +108,7 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 					togBut.setSelected(false);
 				}
 				
-				togBut.addEventHandler(new ToggleButtonEventHandler(model, i , k), null);
+				togBut.addEventHandler(ActionEvent.ACTION, new ToggleButtonEventHandler(model, i, k));
 			}
 		}
 		
@@ -150,12 +162,16 @@ public class NonogramMakerPresenter implements Openable, Saveable {
 	 */
 	public void open (File file) throws FileNotFoundException, IOException {
 		model = new NonogramMakerModel(file);
+		numRows = model.getNumRows();
+		numCols = model.getNumCols();
+		
+	
 		init();
 	}
 	
 	/**
 	 * Calls model.saveToFile with the given filename. 
-	 * @param filename
+	 * @param filename name of file
 	 * @throws IOException 
 	 */
 	public void save (String filename) throws IOException {

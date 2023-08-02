@@ -26,9 +26,9 @@ public class CellGridView {
 	
 	/**
 	 * Constructor for a cell grid. Initializes the GridPane and ArrayList, and sets GridPane alignment
-	 * @param numRows
-	 * @param numCols
-	 * @param cellLength
+	 * @param numRows number of rows
+	 * @param numCols number of columns
+	 * @param cellLength length of cell
 	 */
 	
 	public CellGridView(int numRows, int numCols, int cellLength) {
@@ -45,20 +45,13 @@ public class CellGridView {
 		initButtons(numRows, numCols, cellLength);
 		
 		
-		//adding buttons to the gridpane
-		for(int i = 0; i < this.numRows; ++i) {
-			for(int k = 0; k < this.numCols; ++k) {
-				gridPane.add(getToggleButton(i, k), k, i);
-			}
-		}
-		
 	}
 	
 	/**
 	 * Initializes buttons corresponding to numRows * numCols. Adds them to the ArrayList.
-	 * @param numRows
-	 * @param numCols
-	 * @param cellLength
+	 * @param numRows number of rows
+	 * @param numCols number of columns
+	 * @param cellLength length of cells
 	 */
 	
 	public void initButtons(int numRows, int numCols, int cellLength) {
@@ -73,13 +66,18 @@ public class CellGridView {
 		for(int i = 0; i < (numRows * numCols); ++i) {
 			ToggleButton temp = new ToggleButton();
 			temp.minWidth(cellLength);
-			
 			temp.setMaxWidth(cellLength);
 			temp.setPrefWidth(cellLength);
 			temp.setMinHeight(cellLength);
 			temp.setMaxHeight(cellLength);
 			temp.setPrefHeight(cellLength);
 			gridButtons.add(temp);
+		}
+		
+		for(int i = 0; i < this.numRows; ++i) {
+			for(int k = 0; k < this.numCols; ++k) {
+				gridPane.add(getToggleButton(i, k), k, i);
+			}
 		}
 	}
 	
@@ -107,8 +105,8 @@ public class CellGridView {
 	
 	/**
 	 * Returns a ToggleButton
-	 * @param row
-	 * @param col
+	 * @param row row coordinate
+	 * @param col column coordinate
 	 * @return a ToggleButton at the specified indices
 	 */
 	public ToggleButton getToggleButton(int row, int col) {
